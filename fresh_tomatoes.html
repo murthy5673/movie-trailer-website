@@ -1,0 +1,219 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+       #details {
+           display: none;
+           position: absolute;
+           top: 163px;
+           left: 80px;
+           font-weight: bold;
+           color: blue;
+           background-color: rgb(160,160, 160);
+           border: 1px solid #676597;
+           width: 220px;
+           height: 200px;
+           z-index: 1;
+           opacity: .9;
+       }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        $('#details').hide();
+        $('.movie-tile').mouseenter( function(){
+               $(this).find('#details').show();
+          });
+        $('.movie-tile').mouseleave( function(){
+               $(this).find('#details').hide();
+          });
+        $("#hide").click(function(){
+                $("p").hide();
+          });
+        $("#show").click(function(){
+            $("p").show();
+          });
+        $("p").hover(function(){
+            $(this).css("background-color", "Blue");
+            $(this).css("color", "white");
+            }, function(){
+            $(this).css("background-color", "white");
+            $(this).css("color", "blue");
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    
+    <P align="right"> Murthy Parupudi <br>Nanodegree: Full Stack Web Developer </P>
+    <button id="hide" align="right" >Hide</button> <button id="show" align="right">Show</button>
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Project 1: Movie Trailer Website</a> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div id="Avatar" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="EPTHpG7ovak" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Avatar (marketed as James Cameron's Avatar) is a 2009 American epic science fiction film</p></br>
+    <p style="font-size: 20px;">Director: James Cameron</p>
+    <p style="font-size: 20px;">Rating 7.9/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/b/b0/Avatar-Teaser-Poster.jpg" width="250" height="342">
+    <h2>Avatar</h2>
+    
+</div>   
+
+
+<div id="ToyStory" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Bj4gS1JQzjk" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Toy Story is a 1995 American computer-animated buddy-comedy adventure film</p></br>
+    <p style="font-size: 20px;">Director: John Lasseter</p>
+    <p style="font-size: 20px;">Rating 8.3/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" width="250" height="342">
+    <h2>Toy Story</h2>
+    
+</div>   
+
+
+<div id="Titanic" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ZQ6klONCq4s" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Titanic is a 1997 American epic romantic disaster film. A fictionalized account of the sinking of the RMS Titanic</p></br>
+    <p style="font-size: 20px;">Director: James Cameron</p>
+    <p style="font-size: 20px;">Rating 7.7/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/2/22/Titanic_poster.jpg" width="250" height="342">
+    <h2>Titanic</h2>
+    
+</div>   
+
+
+<div id="Terminator2" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="CAQ83W3DZS4" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Terminator 2 is a 1991 American science fiction action film</p></br>
+    <p style="font-size: 20px;">Director: James Cameron</p>
+    <p style="font-size: 20px;">Rating 8.5/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/6/6b/Terminator-2-shocking-dark-poster.jpg" width="250" height="342">
+    <h2>Terminator 2</h2>
+    
+</div>   
+
+
+<div id="Spiderman" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="1quRsv5QULc" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider</p></br>
+    <p style="font-size: 20px;">Director: Sam Raimi</p>
+    <p style="font-size: 20px;">Rating 6.8/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/0/02/The_Amazing_Spiderman_2_poster.jpg" width="250" height="342">
+    <h2>Spiderman</h2>
+    
+</div>   
+
+
+<div id="JurassicPark" class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="O-FuIzm68KE" data-toggle="modal" data-target="#trailer">
+<div id="details">
+    <p>Description: Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs</p></br>
+    <p style="font-size: 20px;">Director: Steven Spielberg</p>
+    <p style="font-size: 20px;">Rating 8.7/10</p>
+    </div>
+    <img src="http://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg" width="250" height="342">
+    <h2>Jurassic Park</h2>
+    
+</div>   
+
+
+    </div>
+
+  </body>
+</html>
